@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 // import { ReduxRouter } from 'redux-react-router';
 import configureStore from './redux/store';
 import App from './app/App';
-import Error from './components/shared/errors/Error';
 import GnomesList from './components/gnomes/list/GnomesList';
 import GnomeDetails from './components/gnomes/details/GnomeDetails';
 
@@ -23,7 +22,6 @@ ReactDOM.render(
 					</Route>
 					<Route exact path='/gnomes' component={GnomesList} />
 					<Route path='/gnome/:id' component={GnomeDetails} />
-					<Route path='/error' component={Error} />
 				</Switch>
 			</App>
 		</Router>

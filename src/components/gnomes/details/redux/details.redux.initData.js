@@ -1,5 +1,6 @@
 import GnomesApi from '../../../../apis/apis.gnomes';
 import Loader from '../../../shared/redux/shared.redux.loader';
+import { errorHandler } from './../../../shared/redux/shared.redux.errorHandler';
 
 const gnomesDetailsInitData = {
   type: 'gnomesDetailsInitData',
@@ -12,7 +13,7 @@ const gnomesDetailsInitData = {
           data: gnome,
         });
         dispatch(Loader.hideLoading.action());
-      }).catch(dispatch(Loader.hideLoading.action()));
+      }).catch((e) => dispatch(errorHandler.action(e)));
     }
   },
   get reducer() {

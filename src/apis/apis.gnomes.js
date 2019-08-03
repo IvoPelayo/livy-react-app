@@ -9,7 +9,7 @@ function getAllGnomes() {
     .then((response) => {
       return response.data[cityName];
     }).catch((e) => {
-      Promise.reject(e);
+      Promise.reject(e? e.message : 'server-error');
     });
 }
 
@@ -21,6 +21,9 @@ function getSingle(gnomeId) {
   return new Promise((resolve,reject) =>{
     getAllGnomes().then(gnomes => {
       let gnome = head(filter(gnomes, (g) => g.id === gnomeId));
+      if(!gnome){
+        reject('gnome not found!');
+      }
       gnome.friends = getByNames(gnome.friends, gnomes);
       resolve(gnome);
     }).catch(e => reject(e));

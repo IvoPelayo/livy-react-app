@@ -1,6 +1,7 @@
 import { getPopulationInfo } from './list.redux.utils';
 import Loader from './../../../../components/shared/redux/shared.redux.loader';
 import GnomesApi from './../../../../apis/apis.gnomes';
+import { errorHandler } from './../../../shared/redux/shared.redux.errorHandler';
 
 const getGnomeListColumns = {
   type: 'getGnomeListColumns',
@@ -44,7 +45,7 @@ const gnomesListInitData = {
             gnomes: data,
           });
           dispatch(Loader.hideLoading.action());
-        }).catch(dispatch(Loader.hideLoading.action()));
+        }).catch((e) => dispatch(errorHandler.action(e)));
       }
   },
   create() {
